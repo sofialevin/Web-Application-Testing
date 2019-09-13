@@ -3,6 +3,35 @@ import './App.css';
 import Display from './components/Display';
 import Dashboard from './components/Dashboard';
 import 'semantic-ui-css/semantic.min.css';
+import { getIterator } from 'core-js';
+
+export const ballCount = (balls) => {
+  if (balls < 3) {
+    return balls + 1;
+  } else {
+    return 0
+  }
+}
+
+export const strikeCount = (strikes) => {
+  if (strikes < 2) {
+    return strikes + 1;
+  } else {
+    return 0
+  }
+}
+
+export const hit = () => {
+  return 0;
+}
+
+export const foul = (strikes) => {
+  if (strikes < 2) {
+    return strikes + 1;
+  } else {
+    return 2
+  }
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -14,18 +43,22 @@ class App extends React.Component {
   }
 
   updateCount = (buttonName) => {
-    if (buttonName === 'strike') {
+    if (buttonName === 'ball') {
       this.setState({
-        strikes: this.state.strikes + 1
-      })
-    } else if (buttonName === 'ball') {
-      this.setState({
-        balls: this.state.balls + 1
-      })
+        balls: ballCount(this.state.balls)
+      })    
+    } else if (buttonName === 'strike') {
+        this.setState({
+          strikes: strikeCount(this.state.strikes)
+        })  
     } else if (buttonName === 'hit') {
       this.setState({
-        balls: 0,
-        strikes: 0
+        balls: hit(),
+        strikes: hit()
+      })
+    } else {
+      this.setState({
+        strikes: foul(this.state.strikes)
       })
     }
   }

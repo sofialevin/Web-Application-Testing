@@ -6,14 +6,14 @@ class Dashboard extends React.Component {
         super(props);
         this.state = {  }
     }
-    
+
     handleClick = (e) => {
         this.props.updateCount(e.target.name)
     }
 
     render() { 
         return (
-            <div>
+            <div className="dashboard">
                 <Button.Group>
                     <Button name="strike" onClick={this.handleClick}>
                         Strike
